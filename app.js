@@ -10,6 +10,10 @@ var users = require('./routes/users');
 var passport = require('passport');
 var unirest = require('unirest');
 
+//Require files
+require('./db.js');
+require('./auth');
+
 var app = express();
 
 //----------authentication setup----------
@@ -54,13 +58,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// require('./db.js');
-//
-// var mongoose = require('mongoose');
-// var EPoem = mongoose.model('EPoem');
-// var userPoem = mongoose.model('userPoem');
-// //var favoriteList = mongoose.model('favoriteList');
-// var userList = mongoose.model('userList');
+var mongoose = require('mongoose');
+var EPoem = mongoose.model('EPoem');
+var userPoem = mongoose.model('userPoem');
+var userList = mongoose.model('userList');
 //-------------------------SETUP CODE END-------------------------
 
 app.use('/', routes);
