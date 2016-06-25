@@ -7,8 +7,29 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var passport = require('passport');
+var unirest = require('unirest');
 
 var app = express();
+
+//----------authentication setup----------
+var session = require('express-session');
+var sessionOptions = {
+  secret: 'abc',
+  resave: true,
+  saveUninitialized: true
+};
+
+app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function(req, res, next){
+  //middleware adds req.user context to every template
+  res.locals.user = req.user;
+  next();
+});
+//------------------------------------------
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
