@@ -31,6 +31,17 @@ app.use(function(req, res, next){
 });
 //------------------------------------------
 
+//===============================
+
+//proxy for site that doesn't have CORS headers
+app.use('/proxy', function(req, res) {
+  //var searchAuthor = req.url.replace('/', '');
+  console.log("Running Proxy");
+  var url = 'http://poetrydb.org/authors';
+  req.pipe(request(url)).pipe(res);
+});
+//===============================
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -43,8 +54,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// require('./db.js');
+//
+// var mongoose = require('mongoose');
+// var EPoem = mongoose.model('EPoem');
+// var userPoem = mongoose.model('userPoem');
+// //var favoriteList = mongoose.model('favoriteList');
+// var userList = mongoose.model('userList');
+//-------------------------SETUP CODE END-------------------------
+
 app.use('/', routes);
 app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
