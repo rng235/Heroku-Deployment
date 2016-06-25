@@ -19,9 +19,10 @@ String.prototype.replaceAll = function (search, replacement) {
   return target.split(search).join(replacement);
 };
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+//-------------------------Home Page|Poems-------------------------
+router.get('/', function (req, res) {
+    res.render('home');
 });
+
 
 module.exports = router;
