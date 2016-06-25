@@ -1,18 +1,18 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+//Require files
+require('./db.js');
+require('./auth');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var passport = require('passport');
 var unirest = require('unirest');
 
-//Require files
-require('./db.js');
-require('./auth');
 
 var app = express();
 
