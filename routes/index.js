@@ -81,4 +81,35 @@ router.get('/lionsden', function (req, res) {
     }
 });
 
+//--------------------For admin to enter poem--------------------
+router.post('/lionsden', function (req, res) {
+
+    var poemInstance;
+    var contentRevised = req.body.content.replace(/\r\n/g, "<br>").replace(/\n/g, "<br>");
+
+    //Create instance of Poem with user input data
+    poemInstance = new EPoem({
+        title: req.body.title,
+        author: req.body.author,
+        date: req.body.date,
+        content: contentRevised
+    });
+
+    //console.log(poemInstance.content);
+    if (poemInstance.title != '' && poemInstance.content != '' && poemInstance.author != '') {
+
+    }
+
+    poemInstance.save(function (err, Poem, count) {
+        if (err) {
+            console.log(err);
+        }
+
+        else {
+            console.log("------POEM INSTANCE SAVED------\n", poemInstance);
+            res.redirect('/lionsden');
+        }
+    });
+});
+
 module.exports = router;
