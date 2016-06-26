@@ -232,4 +232,72 @@ router.get('/aboutme', function (req, res) {
     res.render('aboutMe');
 
 });
+
+//--------------------------------Authentication--------------------------------
+router.get('/login', function (req, res) {
+    console.log("---------------------------Load Login Page---------------------------")
+    res.render('login');
+});
+
+router.post('/login', function (req, res, next) {
+
+    passport.authenticate('local', function (error, user) {
+        if (user) {
+            req.logIn(user, function (error) {
+                res.redirect('/lionsden');  //if successful, redirect to homepage
+            });
+        }
+        else {
+            res.render('login', {message: 'Sorry, your username or password is incorrect.'});
+        }
+    })(req, res, next);
+});
+
+router.get('/register', function (req, res) {
+    console.log("---------------------------Load Registration Page---------------------------")
+    res.render('register');
+});
+
+router.post('/register', function (req, res) {
+    //register a new user with given username and password from form
+    User.register(new User({username: req.body.username}), req.body.password, function (error, user) {
+
+        console.log("Registering");
+        if (error) {
+            console.log(error);
+            res.render('register', {message: 'Sorry, your registration information is not valid.'});
+        }
+        else {
+            passport.authenticate('local')(req, res, function () {
+
+                //When registering successfully, create a unique list for this user
+                var newList = new userList({
+                    user: req.user._id,
+                    //THE USER LIST NAME
+                    listName: req.user.username + "list",
+                    userPoems: []
+                });
+
+                newList.save(function (err, list) {
+                    req.user.list.push(list);
+
+                    req.user.save(function (err, user) {
+
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        //Redirect to poems after registering and adding list
+                        else {
+                            console.log("List " + req.user.username + "list Added & Successfully Registered");
+                            res.redirect('/lionsden');
+                        }
+                    });
+                });
+            });
+        }
+    });
+
+    //******************************************************************************
+});
 module.exports = router;
