@@ -112,4 +112,88 @@ router.post('/lionsden', function (req, res) {
     });
 });
 
+//-------------------------User List-------------------------
+router.get('/userlist', function (req, res) {
+    console.log("---------------------------Load User List Page---------------------------");
+    //Find all poems to display
+    if (!!req.user) {
+        User.findOne({username: req.user.username}).populate('list').exec(function (err, user) {
+
+            var listN = req.user.username + "list";
+            console.log("User: " , user);
+
+            if (err) {
+                console.log(err);
+            }
+
+            else {
+                //Retrieve the one list and pass data to html
+                console.log("Looking up userList named: ", listN);
+                userList.findOne({listName: listN}, function (err, mylist, count) {
+
+                    if (err) {
+                        console.log("Error at finding list: ", err);
+                        res.redirect('login');
+                    }
+
+                    else {
+                        console.log("Username: ", req.user.username);
+                        console.log("list stuff: ", mylist);
+                        res.render('userList', {
+                            'listName': mylist.listName,
+                            'list': mylist,
+                            'username': req.user.username
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    //if we are not logged in, then prompt the user to login
+    else {
+        res.redirect('login');
+    }
+
+});
+
+router.post('/userlist', function (req, res) {
+
+    var poemInstance;
+    var contentRevised = req.body.content.replace(/\r\n/g, "<br>").replace(/\n/g, "<br>");
+
+    //Create instance of Poem with user input data
+    poemInstance = new userPoem({
+        title: req.body.title,
+        author: req.body.author,
+        date: req.body.date,
+        content: contentRevised
+    });
+
+    console.log(poemInstance.content);
+
+    var listN = req.user.username + "list";
+
+    if (poemInstance.title != '' && poemInstance.content != '' && poemInstance.author != '') {
+
+    }
+
+    console.log("Adding to list named: ", listN);
+
+    //Find the list and push the new entry into that list
+    userList.findOneAndUpdate({listName: listN},
+        {$push: {userPoems: poemInstance}},
+        function (err, list) {
+            if (err) {
+                console.log('an error occured');
+            }
+
+            else {
+                console.log("Saved List: ", list);
+                res.redirect('/userlist')
+            }
+        })
+});
+
+
 module.exports = router;
