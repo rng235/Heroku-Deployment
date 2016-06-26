@@ -139,7 +139,7 @@ router.get('/userlist', function (req, res) {
                     else {
                         console.log("Username: ", req.user.username);
                         console.log("list stuff: ", mylist);
-                        res.render('userList', {
+                        res.render('userlist', {
                             'listName': mylist.listName,
                             'list': mylist,
                             'username': req.user.username
