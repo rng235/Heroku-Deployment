@@ -195,5 +195,41 @@ router.post('/userlist', function (req, res) {
         })
 });
 
+//-------------------------Archive-------------------------
 
+//Display authors from api
+router.get('/archive', function (req, res) {
+    console.log("---------------------------Archive Page---------------------------");
+
+    console.log(req.body);
+    unirest.get("https://thundercomb-poetry-db-v1.p.mashape.com/author")
+        .header("X-Mashape-Key", "IeSeftOTvPmshTpUAhYwZADkiwe3p1iMUggjsnGIXvN5KU8gCp")
+        .end(function (result) {
+
+            res.render("archive", {authorList: result.body});
+        });
+
+});
+
+router.get('/archive/:slug', function(req,res) {
+
+    console.log(req.params.slug);
+    var url = "https://thundercomb-poetry-db-v1.p.mashape.com/author/"+req.params.slug;
+
+    console.log("URL REQUEST: ", url);
+    unirest.get(url)
+        .header("X-Mashape-Key", "IeSeftOTvPmshTpUAhYwZADkiwe3p1iMUggjsnGIXvN5KU8gCp")
+        .end(function (result) {
+            console.log(result.body);
+            res.render("archiveSearch", {list: result.body});
+        });
+});
+
+
+//-------------------------About Me-------------------------
+router.get('/aboutme', function (req, res) {
+    console.log("---------------------------Load About Me Page---------------------------")
+    res.render('aboutMe');
+
+});
 module.exports = router;
