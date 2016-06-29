@@ -3,14 +3,14 @@
 
 ## Overview
 
-A literature blog that displays and organizes poems and short stories. Come and witness works of literature from an NYU English student. Favorite the poems you enjoy most, read about the writer, query for specific works. Check out what the author is reading now and her favorite literature.
+A literature blog that displays and organizes poems and short stories. Come and witness works of literature from an NYU English Literature student. Browse a a largew repository of famous poets such as William Shakespear or Edgar Allen Poe and their works.
 
-Poesis is a website that allows users to get an inside view of an English Majors mind. Look into the workings of a developing young adult through her work. Ask her your questions, submit poems, check out the current featured work. Enjoy a gallery of written art.
+Poesis is a website that allows users to get an inside view of an English Majors mind. Look into the workings of a developing young adult through her work. Ask her your questions and submit your own poetry in a private page. Enjoy a gallery of written art.
 
 
 ## Data Model
 
-We'll need to store the user, poems, short stories, books and a favorite list. The favorite list contains poems and short stories. Each user can only have 1 favorite list, that will be displayed on the favorites page. Poems and short stories will be inserted by me and stored in collections in mongo. Still thinking about where to store submitted works and where to display them. Submitted works will still take the form of poem or short story.
+We'll  store the user, poems and short stories using MongoDB. Each user will initially be assigned a unique empty list that will contain the poetry they submit. Poems and short stories will be inserted by me or the admin and stored in collections.
 
 First draft schema:
 
@@ -52,19 +52,6 @@ var shortStory = new mongoose.Schema({
 
 ![Sitemap] (documentation/sitemap.png)
 
-## Use Cases
-
-As a reader, I want to search for specific works of literature in order to save time
-
-As a reader, I want to be able to favorite a work and easily view it
-
-As a writer, I want to submit my work so that others can see it
-
-As a user, I want to be able to contact the author
-
-As a user, I want to know what the author is currently reading or what the author will be reading
-
-
 ## Technologies
 
 ### User Authentication
@@ -73,5 +60,11 @@ User authentication allows for personalized accounts on web services. Each user 
 
 ### CSS Framework
 
-CSS frameworks allow for easier web design that conforms better to current web design standards. It also provides the less graphically inclined with easy to customize templates for a variety of interface components. This would save a great amount of time in comparison to making these interface elements from scratch. Will check out bootstrap
+CSS frameworks allow for easier web design that conforms better to current web design standards. It also provides the less graphically inclined with easy to customize templates for a variety of interface components. This would save a great amount of time in comparison to making these interface elements from scratch. 
+
+### Bootstrap
+
+Boostrap allows for simple integration of navbars, font styles and formats.
+
+###
 
