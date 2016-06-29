@@ -1,9 +1,11 @@
 
 # Poesis
 
+https://poesis.herokuapp.com/
+
 ## Overview
 
-A literature blog that displays and organizes poems and short stories. Come and witness works of literature from an NYU English Literature student. Browse a a largew repository of famous poets such as William Shakespear or Edgar Allen Poe and their works.
+A literature blog that displays and organizes poems and short stories. Come witness works of literature from an NYU English Literature student. Browse a a large repository of famous poets such as William Shakespear or Edgar Allen Poe and their works.
 
 Poesis is a website that allows users to get an inside view of an English Majors mind. Look into the workings of a developing young adult through her work. Ask her your questions and submit your own poetry in a private page. Enjoy a gallery of written art.
 
@@ -62,5 +64,7 @@ CSS frameworks allow for easier web design that conforms better to current web d
 
 Boostrap allows for simple integration of navbars, font styles and formats.
 
-###
+### Hosted
+
+Hosted on Heroku with mLab, a cloud-based Mongo tool.
 
