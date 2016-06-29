@@ -48,10 +48,6 @@ var shortStory = new mongoose.Schema({
 ![poems and short stories](documentation/poems.shortstories.jpg)
 ![submit](documentation/submit.jpg)
 
-## Sitemap
-
-![Sitemap] (documentation/sitemap.png)
-
 ## Technologies
 
 ### User Authentication
