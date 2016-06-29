@@ -75,4 +75,3 @@ User authentication allows for personalized accounts on web services. Each user 
 
 CSS frameworks allow for easier web design that conforms better to current web design standards. It also provides the less graphically inclined with easy to customize templates for a variety of interface components. This would save a great amount of time in comparison to making these interface elements from scratch. Will check out bootstrap
 
-### ??? Need to look into more topics before inserting here
