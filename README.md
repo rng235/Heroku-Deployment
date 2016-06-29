@@ -32,15 +32,6 @@ var Poem = new mongoose.Schema({
 	date:{type: Date, required: false}
 });
 
-// Books to be used to display what the author
-//  is reading, her favorites, and what she will read
-//  in the future
-var Book = new mongoose.Schema({
-	title: {type: String, required: true},
-	author: {type: String, required: true},
-	description: {type, String, required: true}
-});
-
 //Short stories that will be displayed
 var shortStory = new mongoose.Schema({
 	title: {type: String, required: true},
@@ -48,22 +39,10 @@ var shortStory = new mongoose.Schema({
 	content: {type: String, required: true,
 	date:{type: Date, required: false}
 });
-
-// a favorites list
-// * each list must have a related user
-// * a list can have 0 or more poems/books
-var favoriteList = new mongoose.Schema({
-  user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  name: {type: String, required: true},
-	createdAt: {type: Date, required: false},
-	poems: [Poem],
-	books: [Book]
-});
 ```
 
-## Wireframes
+## Initial Wireframes
 
-NO IDEA HOW TO ROTATE THESE IMAGES IN GITHUB!!!
 ![homepage](documentation/home.jpg)
 ![about](documentation/about.jpg)
 ![poems and short stories](documentation/poems.shortstories.jpg)
@@ -86,15 +65,7 @@ As a user, I want to be able to contact the author
 As a user, I want to know what the author is currently reading or what the author will be reading
 
 
-## Research Topics
-
-Likely research topics include:
-<ul>
-<li>User Authentication (3 points)</li>
-<li>CSS Framework Use (1 point)</li>
-<li> ??? (? points)</li>
-<li> ??? (? points)</li>
-</ul>
+## Technologies
 
 ### User Authentication
 
