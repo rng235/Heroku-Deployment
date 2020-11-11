@@ -43,5 +43,12 @@ mongoose.model('userPoem', userPoem);
 //mongoose.connect('mongodb://localhost/final');
 
 //For heroku deployment
-mongoose.connect('mongodb+srv://rng235:!Firecold6031241@cluster-x91l02fz.mxpam.mongodb.net/heroku_x91l02fz?retryWrites=true&w=majority');
+const uristring = 'mongodb+srv://rng235:!Firecold6031241@cluster-x91l02fz.mxpam.mongodb.net/heroku_x91l02fz?retryWrites=true&w=majority'
 
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + uristring);
+  }
+});
