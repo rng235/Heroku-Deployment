@@ -43,5 +43,5 @@ mongoose.model('userPoem', userPoem);
 //mongoose.connect('mongodb://localhost/final');
 
 //For heroku deployment
-mongoose.connect('mongodb://rng235:!Firecold6031241@ds023054.mlab.com:23054/heroku_x91l02fz');
+mongoose.connect('mongodb+srv://rng235:!Firecold6031241@cluster-x91l02fz.mxpam.mongodb.net/heroku_x91l02fz?retryWrites=true&w=majority');
 
